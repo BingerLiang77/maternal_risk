@@ -1,6 +1,6 @@
 # Maternal Health Risk Dashboard
 
-An interactive Streamlit dashboard for exploring the UCI Maternal Health Risk dataset, together with the data preprocessing and machine learning analysis.
+An interactive Streamlit dashboard for exploring the Maternal Health Risk dataset, together with the data preprocessing and machine learning analysis.
 
 ## Run the Dashboard
 
