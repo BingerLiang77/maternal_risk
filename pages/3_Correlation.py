@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import spearmanr
 
 st.title("Feature Correlations")
 
@@ -30,9 +31,11 @@ risk_order = ["high risk", "mid risk", "low risk"]
 # 1. Overall correlation matrix
 # -----------------------------
 
+
 st.header("Overall Feature Correlation")
 
-corr = df[features].corr()
+# Calculate Spearman rank correlation
+corr = df[features].corr(method="spearman")
 
 fig, ax = plt.subplots(figsize=(9, 7))
 
@@ -41,14 +44,18 @@ sns.heatmap(
     annot=True,
     cmap="coolwarm",
     fmt=".2f",
+    vmin=-1,
+    vmax=1,
+    center=0,
     ax=ax
 )
 
-ax.set_title("Feature Correlation")
+ax.set_title("Feature Correlation (Spearman)")
 
 plt.tight_layout()
 
 st.pyplot(fig)
+
 
 
 # -----------------------------
@@ -79,7 +86,13 @@ with col2:
     )
 
 
-correlation = df[x_variable].corr(df[y_variable])
+
+# Calculate Spearman rank correlation
+correlation, p_value = spearmanr(
+    df[x_variable],
+    df[y_variable],
+    nan_policy="omit"
+)
 
 risk_palette = {
     "high risk": "red",
@@ -104,11 +117,9 @@ ax.set_xlabel(x_variable)
 ax.set_ylabel(y_variable)
 
 plt.tight_layout()
-
 st.pyplot(fig)
 
-
 st.metric(
-    "Pearson correlation",
+    "Spearman correlation",
     f"{correlation:.2f}"
 )
