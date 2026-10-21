@@ -31,11 +31,9 @@ risk_order = ["high risk", "mid risk", "low risk"]
 # 1. Overall correlation matrix
 # -----------------------------
 
-
 st.header("Overall Feature Correlation")
 
-# Calculate Spearman rank correlation
-corr = df[features].corr(method="spearman")
+corr = df[features].corr()
 
 fig, ax = plt.subplots(figsize=(9, 7))
 
@@ -44,13 +42,10 @@ sns.heatmap(
     annot=True,
     cmap="coolwarm",
     fmt=".2f",
-    vmin=-1,
-    vmax=1,
-    center=0,
     ax=ax
 )
 
-ax.set_title("Feature Correlation (Spearman)")
+ax.set_title("Feature Correlation")
 
 plt.tight_layout()
 
@@ -85,9 +80,9 @@ with col2:
         index=1
     )
 
+log_scale = st.checkbox("Use log scale")
 
 
-# Calculate Spearman rank correlation
 correlation, p_value = spearmanr(
     df[x_variable],
     df[y_variable],
@@ -111,6 +106,10 @@ sns.scatterplot(
     alpha=1,
     ax=ax
 )
+
+if log_scale:
+    ax.set_xscale("log")
+    ax.set_yscale("log")
 
 ax.set_title(f"{x_variable} vs {y_variable}")
 ax.set_xlabel(x_variable)

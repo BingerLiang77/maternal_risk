@@ -43,7 +43,6 @@ st.dataframe(
     use_container_width=True
 )
 
-# 4. Dataset preview
 
 st.header("Risk Group Distribution")
 
