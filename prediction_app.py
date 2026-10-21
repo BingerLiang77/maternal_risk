@@ -105,7 +105,7 @@ limits = {
     "Systolic BP": (50, 300),
     "Diastolic BP": (20, 200),
     "Body temperature": (91.4, 107.6),
-    "Heart rate": (0, 250),
+    "Heart rate": (1, 250),
 }
 
 

@@ -58,7 +58,7 @@ sns.countplot(
 
 ax.set_title("Distribution of Risk Groups")
 ax.set_xlabel("Risk Level")
-ax.set_ylabel("Number of Patients")
+ax.set_ylabel("Number of Cases")
 
 plt.tight_layout()
 st.pyplot(fig)
